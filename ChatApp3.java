@@ -11,7 +11,7 @@ package com.mycompany.chatapp2;
 import java.util.Scanner;
 
 
-public class ChatApp3 {
+public class ChatApp2 {
 
   public static void main(String[] args) {
  Scanner input = new Scanner(System.in);
