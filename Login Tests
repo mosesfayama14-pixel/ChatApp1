@@ -1,1 +1,35 @@
 
+public class LoginTest {
+   Login login = new Login();
+
+    // Correct Username Test
+    public void testUsernameCorrect() {
+        assertEquals(true, login.checkUserName("kyl_1"));
+    }
+
+    //Incorrect username test
+    public void testUsernameIncorrect() {
+        assertEquals(false, login.checkUserName("kyle!!!!!!!"));
+    }
+
+    // Correct Password Test
+    public void testPasswordCorrect() {
+        assertEquals(true, login.checkPasswordComplexity("Ch&&sec@ke99!"));
+    }
+
+   //Incorrect Password Test
+    public void testPasswordIncorrect() {
+        assertEquals(false, login.checkPasswordComplexity("password"));
+    }
+
+    // Correct cellphone number tests
+    public void testCellCorrect() {
+        assertEquals(true, login.checkCellPhoneNumber("+27838968976"));
+    }
+
+    //Incorrect Cellphone Number Test
+    public void testCellIncorrect() {
+        assertEquals(false, login.checkCellPhoneNumber("08966553"));
+    }
+}
+}
