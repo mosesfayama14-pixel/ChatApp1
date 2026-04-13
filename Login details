@@ -1,1 +1,75 @@
-
+public class Login{
+    String savedUsername;
+    String savedPassword;
+    
+    //Check Username
+    public boolean checkUserName(String username) {
+        
+        //Must contain "_" and be 5 characters or less
+        if (username.contains("_")&& username.length()<=5) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //Check Password
+    public boolean checkPasswordComplexity(String password) {
+        
+        boolean hasCapital = false;
+        boolean hasNumber = false;
+        boolean hasSpecial = false;
+        
+        //Check each character
+        for (int i=0;i<password.length(); i++) {
+            char ch = password.charAt(i);
+            
+            if(Character.isUpperCase(ch)) {
+                hasCapital = true;
+            }else if
+         (Character.isDigit(ch)) {
+                hasNumber = true;
+            }else if(!Character.isLetterOrDigit(ch)) {
+                hasSpecial = true;
+            }          
+        }
+        //Check all conditions
+        if (password.length()>= 8 && hasCapital && hasNumber && hasSpecial){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean checkCellPhoneNumber(String phone) {
+        if(phone.startsWith("+27") && phone.length() ==12){
+            return true;
+        } else {
+            return false;
+        }       
+    }
+    public String registerUser(String username, String password) {
+        if(!checkUserName(username)) {
+            return "Username is not correct.";
+        }
+        if(!checkPasswordComplexity(password)) {
+            return "Password is not strong enough";
+        }
+        savedUsername = username;
+        savedPassword = password; 
+        
+return "User registered successfully.";
+    }
+    public boolean loginUser(String username, String password) {
+        
+        if(username.equals(savedUsername) && password.equals(savedPassword)){
+            return true;
+        }else{
+            return false;
+        }
+        }          
+    public String returnLoginStatus(boolean status) {
+        
+        if(status==true) {
+            return "Login succesful";
+        }else{
+            return "Login failed";    
+        }
