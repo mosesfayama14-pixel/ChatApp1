@@ -1,0 +1,94 @@
+private static void sendMessagesWorkflow() {
+String numInput = JOptionPane.showInputDialog(null, "How many total messages do you wish to enter ?", JOptionPane.QUESTION_MESSAGE);
+if (numInput == null) return;
+
+int numMessages;
+try {
+numMessages = Integer.parseInt(numInput);
+} catch (NumberFormatException e) {
+JOptionPane.showMessageDialog(null, "Invalid integer parse parameters entered. Aborting process stream.", "Parsing Value Error", JOptionPane.ERROR_MESSAGE);
+return;
+}
+
+for (int i = 0; i < numMessages; i++) {
+
+// Recipient Country Code Validation Matrix
+String recipient = "";
+while (true) {
+recipient = JOptionPane.showInputDialog(null, "(Processing Element Loop Index " + (i + 1) + " of " + numMessages + ")\nEnter recipient mobile string (incorporating international prefix dialing codes):");
+if (recipient == null) return;
+
+if (recipient.trim().length() >= 10) {
+break;
+}
+JOptionPane.showMessageDialog(null, "Format verification failure. Full international ext digits allocation values required.", "Format Data Fault", JOptionPane.ERROR_MESSAGE);
+}
+
+// Message Cap-Size Validation Pipeline
+String content = "";
+while (true) {
+content = JOptionPane.showInputDialog(null, "Enter short descriptive message(Strict 250 character cap limit bounding box):");
+if (content == null) return;
+
+if (content.length() <= 250) {
+// Exact rubric target success match text confirmation notification prompt
+JOptionPane.showMessageDialog(null, "Message sent");
+break;
+} else {
+// Exact rubric target mismatch string notification alert error statement
+JOptionPane.showMessageDialog(null, "Please enter a message of less than 250 characters.", "Text Field Size Violation", JOptionPane.ERROR_MESSAGE);
+}
+}
+
+// Autogenerating 10-Digit Unique Message ID Token Structure Blocks
+Random rand = new Random();
+long idNum = (long)(rand.nextDouble() * 9000000000L) + 1000000000L;
+String messageID = String.valueOf(idNum);
+
+// Substring Custom Hash Algorithm Token Generator Method Call Execution
+String hash = generateHash(messageID, i, content);
+
+// Output Target Command Panel Matrix Option Menu Select Strings
+String[] choices = {"S (Send Message)", "0 (Disregard Message)", "Store Message"};
+int actionChoice = JOptionPane.showOptionDialog(null,
+"Define deployment tracking command code path routing for this processing instance element:",
+"Processing Output Vector Route Options",
+JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
+
+if (actionChoice == 0) { // S Selected - Send and Commit State Write
+Message messageInstance = new Message(messageID, hash, recipient, content);
+messageList.add(messageInstance);
+totalMessagesSent++;
+
+String displayReport = "Message ID: " + messageID + "\n" +
+"Message Hash: " + hash + "\n" +
+"Recipient: " + recipient + "\n" +
+"Message: " + content;
+JOptionPane.showMessageDialog(null, displayReport, "Processing Session Sent Details Confirmation Report Sequence", JOptionPane.INFORMATION_MESSAGE);
+
+// Dynamically append collection map vector objects straight out to persistent json file structures on disk
+saveCurrentCollectionToJSONFile();
+
+} else if (actionChoice == 1) { // 0 Selected
+JOptionPane.showMessageDialog(null, "Press 0 to delete the message", "Discarding Queue Routing View", JOptionPane.INFORMATION_MESSAGE);
+} else if (actionChoice == 2) { // Store Message Selected
+Message messageInstance = new Message(messageID, hash, recipient, content);
+messageList.add(messageInstance); // Allocated safely inside system central buffer framework collections
+JOptionPane.showMessageDialog(null, "Message successfully stored", "Buffer Memory Synch Confirmation", JOptionPane.INFORMATION_MESSAGE);
+
+saveCurrentCollectionToJSONFile();
+}
+}
+
+JOptionPane.showMessageDialog(null, "Total messages sent: " + totalMessagesSent, "Task summary report", JOptionPane.INFORMATION_MESSAGE);
+}
+
+private static String generateHash(String id, int loopCounter, String content) {
+String cleanID = id.substring(0, 2);
+String[] splitWords = content.trim().split("\\s+");
+String firstWord = splitWords[0];
+String lastWord = splitWords[splitWords.length - 1];
+
+String generatedRaw = cleanID + ":" + loopCounter + ":" + firstWord + lastWord;
+return generatedRaw.toUpperCase();
+}
