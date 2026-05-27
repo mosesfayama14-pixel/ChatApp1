@@ -4,8 +4,7 @@ Good day, sir. Today, I will be presenting my Java application called QuickChat.
 Startup: Registration and Login
 "When the program first runs, it handles user security.
 
-First, it opens visual pop-up boxes to ask a new user for their first name, last name, and to choose a username and password.
-
+First, I used a scanner and the result popped up in the output box and asked a new user for their first name, last name, and to choose a username and password.
 Once registered, the system takes them to a security screen. It checks if the username and password they type in match the registered details exactly. If they don't match, access is denied and the program stops."
 
 The Main Menu
