@@ -16,7 +16,7 @@ Before accessing any system features, the `POE` main class forces users through 
 When creating messages, the app packages inputs into a dedicated `Message` object. The data goes through multiple validation checkpoints built into the `POE` pipeline:
 1. Phone Validation: Ensures cell phone numbers match standard formatting structures using a strict Regular Expression (Regex).
 2. Length Guardrails: Restricts the text message to a strict maximum of 250 characters.
-3. Dynamic Hash Generation:** For every message, the system creates a random 10-digit ID and algorithmically generates a unique uppercase hash token using parts of the ID and the first and last words of the text content.
+3. Dynamic Hash Generation: For every message, the system creates a random 10-digit ID and algorithmically generates a unique uppercase hash token using parts of the ID and the first and last words of the text content.
 
 #3. Dynamic Routing & Data Persistence
 Once a message is validated, users can route it into distinct tracking categories:
